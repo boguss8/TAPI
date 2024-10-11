@@ -5,12 +5,18 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "generate-cheese-data": "node generateCheeseData.js"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "@faker-js/faker": "^9.0.3",
     "express": "^4.21.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
   }
 }
