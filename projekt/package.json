@@ -1,0 +1,41 @@
+{
+  "name": "tapi",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node src/index.ts",
+    "run": "nodemon src/index.ts",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write .",
+    "docs:generate": "redoc-cli bundle docs/api-docs.json -o docs/index.html",
+    "docs:serve": "npm run docs:build && serve docs/dist",
+    "docs:build": "mkdir -p docs/dist && cp -r docs/index.html docs/dist/ && cp -r docs/docs docs/dist/"
+  },
+  "author": "s25867",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.12.5",
+    "@grpc/proto-loader": "^0.7.13",
+    "apollo-server-express": "^3.13.0",
+    "docusaurus": "^1.14.7",
+    "eslint": "^9.18.0",
+    "express": "^4.21.2",
+    "mongoose": "^6.0.12",
+    "prettier": "^3.4.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  },
+  "devDependencies": {
+    "@types/swagger-ui-express": "^4.1.7",
+    "eslint": "^7.32.0",
+    "prettier": "^2.3.2",
+    "redoc-cli": "^0.13.21",
+    "serve": "^14.2.4",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.3"
+  }
+}

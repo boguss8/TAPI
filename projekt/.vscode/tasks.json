@@ -1,0 +1,13 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run nodemon",
+      "type": "shell",
+      "command": "nodemon",
+      "args": ["your-start-script.js"],
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ]
+}
