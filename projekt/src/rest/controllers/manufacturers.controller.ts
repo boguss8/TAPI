@@ -44,10 +44,10 @@ export const getManufacturerById = (
         };
       }),
     };
+    hateoas(req, res, next);
   } else {
     res.status(404).send('Manufacturer not found');
   }
-  hateoas(req, res, next);
 };
 
 export const createManufacturer = (
@@ -74,10 +74,10 @@ export const updateManufacturer = (
     res.locals.data = {
       ...manufacturers[index],
     };
+    hateoas(req, res, next);
   } else {
     res.status(404).send('Manufacturer not found');
   }
-  hateoas(req, res, next);
 };
 
 export const deleteManufacturer = (
@@ -88,11 +88,9 @@ export const deleteManufacturer = (
   const index = manufacturers.findIndex((m) => m.id === req.params.id);
   if (index !== -1) {
     manufacturers.splice(index, 1);
-    res.locals.data = true;
-    res.status(204);
+    res.locals.data = {};
+    res.status(204).send();
   } else {
-    res.locals.data = false;
     res.status(404).send('Manufacturer not found');
   }
-  hateoas(req, res, next);
 };

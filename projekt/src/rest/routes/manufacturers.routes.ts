@@ -34,7 +34,7 @@ const router = Router();
  *     responses:
  *       201:
  *         description: Created manufacturer
- * 
+ *
  * /manufacturers/{id}:
  *   get:
  *     summary: Get a manufacturer by ID
@@ -81,7 +81,7 @@ const router = Router();
  *         description: Manufacturer deleted successfully
  *       404:
  *         description: Manufacturer not found
- * 
+ *
  * @swagger
  * components:
  *   schemas:

@@ -50,6 +50,12 @@ async function startServer() {
     console.log(
       `GraphQL server is running at http://localhost:${port}${graphqlServer.graphqlPath}`
     );
+    console.log(
+      `API documentation is running at http://localhost:${port}/api-docs`
+    );
+    console.log(
+      `Swagger documentation is running at http://localhost:${port}/docs`
+    );
   });
 }
 

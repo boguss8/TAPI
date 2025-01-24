@@ -23,6 +23,10 @@ function isReviewReference(item: { id: string }): item is { id: string } {
 }
 
 export const hateoas = (req: Request, res: Response, next: NextFunction) => {
+  if (res.headersSent) {
+    return next();
+  }
+
   if (res.locals.data) {
     const addLinks = (
       item: ResourceType | ProcessedCheeseRef,
@@ -45,21 +49,14 @@ export const hateoas = (req: Request, res: Response, next: NextFunction) => {
         processedCheeses.forEach((cheeseId) => {
           addLinks({ id: cheeseId } as ProcessedCheeseRef, 'cheeses');
         });
-      }
-
-      if (isCheeseWithReviews(item) && item.reviews) {
-        item.reviews = item.reviews.map((reviewRef) => {
+      } else if (isCheeseWithReviews(item)) {
+        item.reviews?.forEach((reviewRef) => {
           if (isReviewReference(reviewRef)) {
-            const foundReview = reviews.find(
-              (r: Review) => r.id === reviewRef.id
-            );
-            return foundReview ? addLinks(foundReview, 'reviews') : reviewRef;
+            addLinks(reviewRef, 'reviews');
           }
-          return reviewRef;
         });
       }
-
-      return addLinks(item, req.baseUrl.split('/').pop() || '');
+      return addLinks(item, item.constructor.name.toLowerCase() + 's');
     };
 
     if (Array.isArray(res.locals.data)) {
@@ -68,5 +65,6 @@ export const hateoas = (req: Request, res: Response, next: NextFunction) => {
       res.locals.data = processItem(res.locals.data);
     }
   }
+
   next();
 };
