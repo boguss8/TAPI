@@ -28,6 +28,13 @@ async function startServer() {
   app.use(express.json());
   app.use(setHeaders);
 
+  app.use(express.static(path.join(__dirname, '../build')));
+  app.use('/docs', express.static(path.join(__dirname, '../build')));
+  
+  app.get('/docs/*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../build/index.html'));
+  });
+
   app.use('/cheeses', cheesesRoutes);
   app.use('/reviews', reviewsRoutes);
   app.use('/manufacturers', manufacturersRoutes);
